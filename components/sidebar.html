@@ -1,0 +1,130 @@
+<!-- 모바일 사이드바 -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<aside class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-content">
+        <!-- A. 긴급/계정 영역 -->
+        <div class="sidebar-section urgent-section">
+            <a href="tel:1588-0000" class="emergency-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>24시간 고객센터</span>
+            </a>
+            <a href="login.html" class="auth-link">로그인 / 회원가입</a>
+        </div>
+
+        <!-- B. 핵심 퀵 링크 -->
+        <div class="sidebar-section quick-links">
+            <a href="membership.html" class="quick-link-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>100원 상조</span>
+            </a>
+            <a href="estimate.html" class="quick-link-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>장례 견적</span>
+            </a>
+            <a href="reviews.html" class="quick-link-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span>실제 후기</span>
+            </a>
+            <a href="urgent.html" class="quick-link-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>임종 접수</span>
+            </a>
+        </div>
+
+        <!-- C. 주 메뉴 (Split Panel) -->
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="my-consult.html" class="nav-link">
+                    <span>상담/계약</span>
+                </a>
+                <div class="sub-menu">
+                    <a href="my-estimates.html">내 상담/견적 내역</a>
+                    <a href="my-contracts.html">내 계약서 확인</a>
+                </div>
+            </div>
+            
+            <div class="nav-item">
+                <a href="products.html" class="nav-link">
+                    <span>상품 안내</span>
+                </a>
+                <div class="sub-menu">
+                    <a href="products.html#types">상품 종류</a>
+                    <a href="products.html#services">서비스 구성</a>
+                    <a href="products.html#pricing">비용 안내</a>
+                </div>
+            </div>
+            
+            <div class="nav-item">
+                <a href="process.html" class="nav-link">
+                    <span>장례 절차</span>
+                </a>
+                <div class="sub-menu">
+                    <a href="process.html#guide">상세 절차 가이드</a>
+                    <a href="process.html#documents">필요 서류</a>
+                </div>
+            </div>
+            
+            <div class="nav-item">
+                <a href="articles.html" class="nav-link">
+                    <span>읽을거리</span>
+                </a>
+                <div class="sub-menu">
+                    <a href="articles.html#info">장례 관련 정보</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            
+            <div class="nav-item">
+                <a href="about.html" class="nav-link">
+                    <span>회사 소개</span>
+                </a>
+                <div class="sub-menu">
+                    <a href="about.html#vision">비전</a>
+                    <a href="about.html#team">팀 소개</a>
+                    <a href="about.html#location">오시는 길</a>
+                </div>
+            </div>
+            
+            <!-- Split Panel 적용 항목 -->
+            <div class="nav-item split-panel-trigger" data-panel="contact">
+                <button class="nav-link nav-button">
+                    <span>고객 문의</span>
+                    <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Split Panel (우측 상세 옵션 패널) -->
+    <div class="split-panel" id="splitPanel">
+        <div class="split-panel-header">
+            <button class="back-btn" id="splitPanelBack">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <h3 id="splitPanelTitle">고객 문의</h3>
+        </div>
+        <div class="split-panel-content" id="splitPanelContent">
+            <!-- 동적으로 채워짐 -->
+        </div>
+    </div>
+</aside>

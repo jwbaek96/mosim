@@ -441,7 +441,585 @@ body {
     margin-top: 70px;
 }
 
-/* 히어로 섹션 */
+/* 홈 페이지 모바일 뷰 레이아웃 */
+.home-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 70px);
+    background: linear-gradient(135deg, #fcfcfc 0%, #c4c4c3 100%);
+    padding: 40px 20px;
+    gap: 40px;
+}
+
+/* 왼쪽: 브랜드 영역 */
+.brand-section {
+    flex: 0 0 auto;
+    max-width: 500px;
+    color: var(--gray-900);
+    padding: 0 20px;
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+}
+
+.brand-content {
+    width: 100%;
+}
+
+.brand-logo {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+    /* color: var(--mosim-primary); */
+}
+
+.brand-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.brand-subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.btn-brand {
+    background-color: var(--white);
+    color: var(--mosim-primary);
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.btn-brand:hover {
+    background-color: var(--gray-100);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* 오른쪽: 모바일 사이즈 컨텐츠 영역 */
+.content-section {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    min-height: calc(100vh - 150px);
+}
+
+/* 빠른 견적 카드 */
+.quick-estimate {
+    margin-bottom: 0;
+}
+
+.estimate-card {
+    background-color: var(--white);
+    overflow: hidden;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.estimate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+}
+
+.card-header {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 20px;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.card-badge {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-close {
+    background: rgba(255, 255, 255, 0.99);
+    border: none;
+    color: var(--gray-900);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.card-close:hover {
+    background: var(--gray-300);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 견적 폼 */
+/* 견적 폼 */
+.estimate-form {
+    background-color: var(--white);
+    padding: 24px 20px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--gray-900);
+}
+
+.info-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background-color: var(--mosim-light);
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.info-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.info-text strong {
+    display: block;
+    font-size: 15px;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.info-text p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.form-select {
+    padding: 12px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--gray-900);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--mosim-primary);
+}
+
+.form-select.full {
+    width: 100%;
+}
+
+.form-notice {
+    font-size: 12px;
+    color: var(--emergency);
+    margin-top: 6px;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+/* 추가 정보 */
+.additional-info {
+    padding: 20px;
+    background-color: var(--gray-50);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.info-item {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.info-item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--gray-900);
+}
+
+.info-item p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 10px;
+}
+
+.info-link {
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.info-link:hover {
+    color: var(--mosim-accent);
+}
+
+/* ===========================
+   새로운 홈페이지 섹션들
+   =========================== */
+
+/* NEW 배지 프로모션 */
+.membership-promo {
+    background: linear-gradient(135deg, #ffedcc 0% 0%, #ffedcc 100%);
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--gray-900);
+    position: relative;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.new-badge {
+    display: inline-block;
+    background-color: var(--emergency);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.promo-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.promo-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+    opacity: 0.95;
+}
+
+/* 체크리스트, 계산기, 상품 안내 섹션 */
+.checklist-section,
+.estimate-calculator-section,
+.product-info-section {
+    padding: 32px 20px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.checklist-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.checklist-icon {
+    color: var(--mosim-primary);
+    margin-bottom: 20px;
+}
+
+.checklist-text {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--gray-900);
+}
+
+.section-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* 고객 후기 섹션 */
+.customer-reviews-section {
+    padding: 40px 20px;
+    background-color: var(--gray-50);
+}
+
+.section-title-large {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+}
+
+.section-subtitle-small {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+}
+
+.review-card-main {
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.review-text-main {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-800);
+    margin-bottom: 16px;
+}
+
+.review-author-main {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 12px;
+}
+
+.review-link {
+    display: inline-block;
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.review-link:hover {
+    text-decoration: underline;
+}
+
+/* 가이드 그리드 섹션 */
+.guide-grid-section {
+    padding: 40px 20px;
+    background-color: var(--white);
+}
+
+.guide-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.guide-card {
+    background-color: var(--gray-50);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+.guide-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+}
+
+.guide-link {
+    display: inline-block;
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.guide-link:hover {
+    text-decoration: underline;
+}
+
+/* 구독 상품 그리드 */
+.subscription-grid-section {
+    padding: 40px 20px;
+    background-color: var(--gray-50);
+}
+
+.subscription-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.subscription-card {
+    background: linear-gradient(135deg, var(--mosim-light) 0%, var(--white) 100%);
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid var(--mosim-secondary);
+}
+
+.subscription-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+}
+
+.subscription-link {
+    display: inline-block;
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.subscription-link:hover {
+    text-decoration: underline;
+}
+
+/* 약속 섹션 */
+.promise-section {
+    padding: 40px 20px;
+    background-color: var(--white);
+}
+
+.promise-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.promise-card {
+    background-color: var(--gray-50);
+    padding: 24px;
+    border-radius: 12px;
+    border-left: 4px solid var(--mosim-primary);
+}
+
+.promise-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--mosim-primary);
+    margin-bottom: 12px;
+}
+
+.promise-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-700);
+}
+
+/* 긴급 문의 CTA */
+.emergency-cta-section {
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--emergency) 0%, #E53935 100%);
+    text-align: center;
+    color: var(--white);
+}
+
+.cta-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.btn-emergency {
+    background-color: var(--white);
+    color: var(--emergency);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.btn-emergency:hover {
+    background-color: var(--gray-100);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.text-link {
+    color: var(--white);
+    text-decoration: underline;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.text-link:hover {
+    opacity: 1;
+}
+
+/* 히어로 섹션 (다른 페이지용) */
 .hero-section {
     background: linear-gradient(135deg, var(--mosim-dark) 0%, var(--mosim-primary) 100%);
     color: var(--white);
@@ -486,7 +1064,7 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--white);
+    background-color: var(--gray-100);
     color: var(--mosim-primary);
 }
 
@@ -505,6 +1083,13 @@ body {
 .btn-secondary:hover {
     background-color: var(--white);
     color: var(--mosim-primary);
+}
+
+.btn-home-promote {
+    background-color: var(--white);
+    color: var(--gray-900);
+    font-size: .9rem !important;
+    padding: 7px 16px !important;
 }
 
 .btn-outline {
@@ -714,6 +1299,25 @@ body {
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+    
+    /* 모바일: 전체 화면 사용 */
+    .home-layout {
+        padding: 0;
+        background: var(--white);
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .brand-section {
+        display: none;
+    }
+    
+    .content-section {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: calc(100vh - 70px);
     }
 }
 
