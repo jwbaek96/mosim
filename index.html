@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="모심 - 장례 전문 서비스">
+    <title>모심 - 장례 전문 서비스</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 데스크톱 헤더 네비게이션 -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">모심</a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="estimate.html" class="nav-link">장례 견적</a>
+                <a href="products.html" class="nav-link">상품 안내</a>
+                <a href="process.html" class="nav-link">장례 절차</a>
+                <a href="reviews.html" class="nav-link">고객 후기</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 모바일 사이드바 -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-content">
+            <!-- A. 긴급/계정 영역 -->
+            <div class="sidebar-section urgent-section">
+                <a href="tel:1588-0000" class="emergency-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>24시간 고객센터</span>
+                </a>
+                <a href="login.html" class="auth-link">로그인 / 회원가입</a>
+            </div>
+
+            <!-- B. 핵심 퀵 링크 -->
+            <div class="sidebar-section quick-links">
+                <a href="membership.html" class="quick-link-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <span>100원 상조</span>
+                </a>
+                <a href="estimate.html" class="quick-link-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span>장례 견적</span>
+                </a>
+                <a href="reviews.html" class="quick-link-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <span>실제 후기</span>
+                </a>
+                <a href="urgent.html" class="quick-link-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    <span>임종 접수</span>
+                </a>
+            </div>
+
+            <!-- C. 주 메뉴 (Split Panel) -->
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="my-consult.html" class="nav-link">
+                        <span>상담/계약</span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="my-estimates.html">내 상담/견적 내역</a>
+                        <a href="my-contracts.html">내 계약서 확인</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="products.html" class="nav-link">
+                        <span>상품 안내</span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="products.html#types">상품 종류</a>
+                        <a href="products.html#services">서비스 구성</a>
+                        <a href="products.html#pricing">비용 안내</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="process.html" class="nav-link">
+                        <span>장례 절차</span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="process.html#guide">상세 절차 가이드</a>
+                        <a href="process.html#documents">필요 서류</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="articles.html" class="nav-link">
+                        <span>읽을거리</span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="articles.html#info">장례 관련 정보</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="about.html" class="nav-link">
+                        <span>회사 소개</span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="about.html#vision">비전</a>
+                        <a href="about.html#team">팀 소개</a>
+                        <a href="about.html#location">오시는 길</a>
+                    </div>
+                </div>
+                
+                <!-- Split Panel 적용 항목 -->
+                <div class="nav-item split-panel-trigger" data-panel="contact">
+                    <button class="nav-link nav-button">
+                        <span>고객 문의</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Split Panel (우측 상세 옵션 패널) -->
+        <div class="split-panel" id="splitPanel">
+            <div class="split-panel-header">
+                <button class="back-btn" id="splitPanelBack">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <h3 id="splitPanelTitle">고객 문의</h3>
+            </div>
+            <div class="split-panel-content" id="splitPanelContent">
+                <!-- 동적으로 채워짐 -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>소중한 이별을<br>존중과 정성으로</h1>
+                <p>모심과 함께하는 마지막 배웅</p>
+                <div class="cta-buttons">
+                    <a href="estimate.html" class="btn btn-primary">장례 견적 받기</a>
+                    <a href="urgent.html" class="btn btn-secondary">긴급 임종 접수</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>모심의 서비스</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <h3>투명한 견적</h3>
+                        <p>명확한 비용 구성으로 신뢰할 수 있는 장례 서비스를 제공합니다</p>
+                        <a href="estimate.html" class="feature-link">견적 받기 →</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <h3>24시간 상담</h3>
+                        <p>언제든 연락 가능한 24시간 고객센터가 준비되어 있습니다</p>
+                        <a href="tel:1588-0000" class="feature-link">1588-0000</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>전문 상담사</h3>
+                        <p>경험 많은 전문 상담사가 장례 절차를 안내해드립니다</p>
+                        <a href="about.html#team" class="feature-link">팀 소개 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="container">
+                <h2>고객 후기</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">"어려운 시기에 세심하고 정성스런 도움을 받았습니다. 감사합니다."</p>
+                        <p class="review-author">- 김○○ 고객님</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">"비용이 투명하고 절차가 명확해서 안심하고 맡길 수 있었습니다."</p>
+                        <p class="review-author">- 이○○ 고객님</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">"24시간 상담이 정말 큰 도움이 되었습니다. 추천합니다."</p>
+                        <p class="review-author">- 박○○ 고객님</p>
+                    </div>
+                </div>
+                <a href="reviews.html" class="btn btn-outline">더 많은 후기 보기</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>모심</h4>
+                    <p>소중한 이별을 존중과 정성으로</p>
+                </div>
+                <div class="footer-section">
+                    <h4>고객센터</h4>
+                    <p>전화: 1588-0000</p>
+                    <p>이메일: contact@mosim.com</p>
+                    <p>24시간 운영</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <a href="estimate.html">장례 견적</a>
+                    <a href="process.html">장례 절차</a>
+                    <a href="about.html">회사 소개</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 모심. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
