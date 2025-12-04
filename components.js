@@ -12,6 +12,9 @@ async function loadComponent(elementId, componentPath) {
         const element = document.getElementById(elementId);
         if (element) {
             element.innerHTML = html;
+            console.log(`✅ ${componentPath} 로드 완료`);
+        } else {
+            console.error(`❌ Element not found: ${elementId}`);
         }
     } catch (error) {
         console.error(`Error loading component ${componentPath}:`, error);
@@ -20,14 +23,22 @@ async function loadComponent(elementId, componentPath) {
 
 // 모든 컴포넌트 로드
 async function loadAllComponents() {
+    console.log('📦 컴포넌트 로딩 시작');
     await Promise.all([
         loadComponent('header-component', 'components/header.html'),
-        loadComponent('sidebar-component', 'components/sidebar.html'),
         loadComponent('footer-component', 'components/footer.html')
     ]);
     
-    // 컴포넌트 로드 후 이벤트 발생
-    document.dispatchEvent(new Event('componentsLoaded'));
+    console.log('✅ 컴포넌트 로딩 완료');
+    
+    // requestAnimationFrame으로 다음 렌더링 사이클까지 대기
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            console.log('🔍 menuContent 확인:', document.getElementById('menuContent'));
+            document.dispatchEvent(new Event('componentsLoaded'));
+            console.log('🎉 componentsLoaded 이벤트 발생');
+        });
+    });
 }
 
 // DOM 로드 완료 시 컴포넌트 로드

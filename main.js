@@ -23,8 +23,147 @@ const districtData = {
     '제주': ['제주시', '서귀포시']
 };
 
+// ===========================
+// 사이드바 메뉴 데이터
+// ===========================
+const menuData = {
+    consult: [
+        { label: '내 상담/견적 내역', link: 'my-estimates.html' },
+        { label: '내 계약서 확인', link: 'my-contracts.html' }
+    ],
+    guide: [
+        { 
+            label: '모심 패키지', 
+            hasSubmenu: true,
+            submenu: [
+                { text: '무빈소장 159', link: 'products.html#basic' },
+                { text: '가족장 279', link: 'products.html#family' },
+                { text: '일반장 379', link: 'products.html#standard' },
+                { text: '프리미엄 패키지', link: 'products.html#premium', highlight: true }
+            ]
+        },
+        { 
+            label: '납입 방식별', 
+            hasSubmenu: true,
+            submenu: [
+                { text: '모심 프라임', link: 'products.html#prime', highlight: true },
+                { text: '모심 퍼스트', link: 'products.html#first', highlight: true }
+            ]
+        },
+        { label: '이용 후기', link: 'reviews.html' }
+    ],
+    process: [
+        { label: '가이드북 전체', link: 'process.html' },
+        { 
+            label: '장례 준비 처음부터 알아보기', 
+            hasSubmenu: true,
+            submenu: [
+                { text: '장례 준비의 시작', link: 'process.html#start' },
+                { text: '장례식장 빈소 계약시 주의할 점', link: 'process.html#contract' },
+                { text: '상조 없이 장례를 치르려면?', link: 'process.html#without' },
+                { text: '혼례제 상조 알아보기', link: 'process.html#mixed' }
+            ]
+        },
+        { label: '필요 서류 안내', link: 'process.html#documents' }
+    ],
+    work: [
+        { label: '장례 관련 정보', link: 'articles.html' },
+        { label: 'FAQ', link: 'faq.html' }
+    ],
+    company: [
+        { label: '회사 비전', link: 'about.html#vision' },
+        { label: '팀 소개', link: 'about.html#team' },
+        { label: '오시는 길', link: 'about.html#location' }
+    ],
+    inquiry: [
+        { label: '카카오톡 문의', link: 'https://pf.kakao.com', external: true },
+        { label: '이메일 문의', link: 'mailto:contact@mosim.com' },
+        { label: '전화 문의', link: 'tel:1588-0000' }
+    ]
+};
+
+// 메뉴 렌더링 함수
+function renderMenu(category) {
+    const content = document.getElementById('menuContent');
+    if (!content) return;
+    
+    const items = menuData[category] || [];
+    
+    content.innerHTML = items.map((item, index) => {
+        if (item.hasSubmenu) {
+            const submenuHtml = item.submenu.map(sub => {
+                const highlightClass = sub.highlight ? 'highlight' : '';
+                return `<div class="submenu-item ${highlightClass}" onclick="window.location.href='${sub.link}'">${sub.text}</div>`;
+            }).join('');
+            
+            return `
+                <div>
+                    <div class="menu-item" onclick="toggleSubmenu(${index})">
+                        <div class="menu-item-content">
+                            <span class="menu-label">${item.label}</span>
+                        </div>
+                        <span class="expand-arrow" id="expand-${index}">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="submenu" id="submenu-${index}">
+                        ${submenuHtml}
+                    </div>
+                </div>
+            `;
+        } else {
+            const target = item.external ? 'target="_blank"' : '';
+            return `
+                <div class="menu-item" onclick="window.location.href='${item.link}'" ${target}>
+                    <div class="menu-item-content">
+                        <span class="menu-label">${item.label}</span>
+                    </div>
+                    <span class="menu-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </span>
+                </div>
+            `;
+        }
+    }).join('');
+}
+
+// 서브메뉴 토글 함수
+function toggleSubmenu(index) {
+    const submenu = document.getElementById(`submenu-${index}`);
+    const arrow = document.getElementById(`expand-${index}`);
+    const menuItem = submenu.previousElementSibling;
+    
+    if (submenu && arrow) {
+        submenu.classList.toggle('open');
+        menuItem.classList.toggle('expanded');
+    }
+}
+
+// 카테고리 선택 함수
+function selectCategory(category) {
+    // 모든 탭 비활성화
+    document.querySelectorAll('.menu-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // 선택된 탭 활성화
+    const selectedTab = document.querySelector(`.menu-tab[data-category="${category}"]`);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+    
+    // 메뉴 렌더링
+    renderMenu(category);
+}
+
 // 컴포넌트 로드 후 초기화
 function initializeAfterComponentsLoad() {
+    console.log('🚀 initializeAfterComponentsLoad 실행');
+    
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileSidebar = document.getElementById('mobileSidebar');
     const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -32,31 +171,54 @@ function initializeAfterComponentsLoad() {
     const splitPanelBack = document.getElementById('splitPanelBack');
     const splitPanelTitle = document.getElementById('splitPanelTitle');
     const splitPanelContent = document.getElementById('splitPanelContent');
+    
+    console.log('📱 Elements:', {
+        mobileMenuBtn,
+        mobileSidebar,
+        sidebarOverlay,
+        menuContent: document.getElementById('menuContent')
+    });
+    
+    // 초기 메뉴 렌더링 (상담/계약)
+    console.log('🎨 renderMenu 호출');
+    renderMenu('consult');
+    
+    // 메뉴 탭 이벤트 리스너
+    document.querySelectorAll('.menu-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const category = tab.getAttribute('data-category');
+            selectCategory(category);
+        });
+    });
 
     // 사이드바 열기/닫기
     function toggleSidebar() {
+        if (!mobileMenuBtn || !mobileSidebar || !sidebarOverlay) return;
+        
         mobileMenuBtn.classList.toggle('active');
         mobileSidebar.classList.toggle('active');
         sidebarOverlay.classList.toggle('active');
         document.body.classList.toggle('sidebar-open');
         
         // Split Panel 닫기
-        if (splitPanel.classList.contains('active')) {
+        if (splitPanel && splitPanel.classList.contains('active')) {
             closeSplitPanel();
         }
     }
 
     // 사이드바 닫기
     function closeSidebar() {
-        mobileMenuBtn.classList.remove('active');
-        mobileSidebar.classList.remove('active');
-        sidebarOverlay.classList.remove('active');
+        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        if (mobileSidebar) mobileSidebar.classList.remove('active');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
         document.body.classList.remove('sidebar-open');
-        closeSplitPanel();
+        if (splitPanel) closeSplitPanel();
     }
 
     // Split Panel 열기
     function openSplitPanel(panelType) {
+        if (!splitPanel || !mobileSidebar || !splitPanelTitle || !splitPanelContent) return;
+        
         splitPanel.classList.add('active');
         mobileSidebar.style.right = '320px'; // 사이드바를 좌측으로 이동
         
@@ -89,6 +251,7 @@ function initializeAfterComponentsLoad() {
 
     // Split Panel 닫기
     function closeSplitPanel() {
+        if (!splitPanel || !mobileSidebar) return;
         splitPanel.classList.remove('active');
         mobileSidebar.style.right = '0';
     }
@@ -153,6 +316,9 @@ function initializeAfterComponentsLoad() {
             }
         }
     });
+    
+    // 전역 함수로 노출 (handleResize에서 사용)
+    window.closeSidebar = closeSidebar;
 }
 
 // ===========================
@@ -231,12 +397,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===========================
 
 function handleResize() {
-    const width = window.innerWidth;
-    
-    // 데스크톱 사이즈에서는 사이드바 강제 닫기
-    if (width >= 768) {
-        closeSidebar();
-    }
+    // 데스크톱에서도 사이드바 작동하도록 resize 핸들러 제거
+    // const width = window.innerWidth;
+    // if (width >= 768 && window.closeSidebar) {
+    //     window.closeSidebar();
+    // }
 }
 
 window.addEventListener('resize', handleResize);
