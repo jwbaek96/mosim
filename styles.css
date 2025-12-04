@@ -237,9 +237,10 @@ body {
 .mobile-sidebar {
     position: fixed;
     top: 0;
-    right: -420px;
-    width: 420px;
-    height: 100vh;
+    right: -500px;
+    width:100%;
+    max-width: 500px;
+    height: 100dvh;
     background-color: #ffffff;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -256,8 +257,8 @@ body {
 @media (max-width: 767px) {
     .mobile-sidebar {
         right: -100%;
-        width: 85vw;
-        max-width: 380px;
+        /* width: 85vw;
+        max-width: 380px; */
     }
 }
 
@@ -421,6 +422,8 @@ body {
 /* 메뉴 컨테이너 */
 .sidebar-menu-container {
     background-color: #ffffff;
+    display: grid;
+    grid-template-columns: 140px 1fr;
 }
 
 /* 카테고리 탭 */
