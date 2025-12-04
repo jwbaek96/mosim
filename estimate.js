@@ -27,65 +27,189 @@ const districtData = {
     '제주': ['제주시', '서귀포시']
 };
 
-// Step 1: 의도 선택
-document.querySelectorAll('.option-card, .option-card-full').forEach(card => {
-    card.addEventListener('click', function() {
-        // 선택 표시
-        document.querySelectorAll('.option-card, .option-card-full').forEach(c => c.classList.remove('selected'));
-        this.classList.add('selected');
-        
-        // 의도 저장
-        userIntent = this.getAttribute('data-intent');
-        formData.intent = userIntent;
+// DOM이 로드된 후 이벤트 리스너 등록
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('=== estimate.js DOMContentLoaded 실행 ===');
+    
+    // Step 1: 의도 선택
+    const intentButtons = document.querySelectorAll('.option-card, .option-card-full');
+    console.log('의도 선택 버튼 개수:', intentButtons.length);
+    
+    intentButtons.forEach((card, index) => {
+        console.log(`버튼 ${index + 1}:`, card.getAttribute('data-intent'));
+        card.addEventListener('click', function() {
+            console.log('버튼 클릭됨:', this.getAttribute('data-intent'));
+            // 선택 표시
+            document.querySelectorAll('.option-card, .option-card-full').forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // 의도 저장
+            userIntent = this.getAttribute('data-intent');
+            formData.intent = userIntent;
+            console.log('userIntent 저장됨:', userIntent);
+            console.log('formData:', formData);
+        });
     });
-});
 
-// 지역 선택 버튼
-document.querySelectorAll('.location-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // 선택 표시
-        document.querySelectorAll('.location-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        
-        // 지역 저장
-        formData.location = this.getAttribute('data-location');
+    // 지역 선택 버튼
+    const locationButtons = document.querySelectorAll('.location-btn');
+    console.log('지역 선택 버튼 개수:', locationButtons.length);
+    
+    locationButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log('지역 버튼 클릭됨:', this.getAttribute('data-location'));
+            // 선택 표시
+            document.querySelectorAll('.location-btn').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // 지역 저장
+            formData.location = this.getAttribute('data-location');
+            console.log('지역 저장됨:', formData.location);
+        });
     });
-});
 
-// 구 선택 버튼
-document.querySelectorAll('.district-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // 선택 표시
-        document.querySelectorAll('.district-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        
-        // 구 저장
-        formData.district = this.getAttribute('data-district');
+    // 조문객 수 선택
+    const attendeesButtons = document.querySelectorAll('[data-attendees]');
+    console.log('조문객 수 버튼 개수:', attendeesButtons.length);
+    
+    attendeesButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log('조문객 수 버튼 클릭됨:', this.getAttribute('data-attendees'));
+            // 선택 표시
+            document.querySelectorAll('[data-attendees]').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // 조문객 수 저장
+            formData.attendees = this.getAttribute('data-attendees');
+            console.log('조문객 수 저장됨:', formData.attendees);
+        });
     });
-});
 
-// 조문객 수 선택
-document.querySelectorAll('[data-attendees]').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // 선택 표시
-        document.querySelectorAll('[data-attendees]').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        
-        // 조문객 수 저장
-        formData.attendees = this.getAttribute('data-attendees');
+    // 장례 준비 상황 선택
+    const preparationButtons = document.querySelectorAll('[data-preparation]');
+    console.log('준비 상황 버튼 개수:', preparationButtons.length);
+    
+    preparationButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log('준비 상황 버튼 클릭됨:', this.getAttribute('data-preparation'));
+            // 선택 표시
+            document.querySelectorAll('[data-preparation]').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // 준비 상황 저장
+            formData.preparation = this.getAttribute('data-preparation');
+            console.log('준비 상황 저장됨:', formData.preparation);
+        });
     });
-});
 
-// 장례 준비 상황 선택
-document.querySelectorAll('[data-preparation]').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // 선택 표시
-        document.querySelectorAll('[data-preparation]').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
+    // 라디오 카드 시각적 피드백
+    const radioCards = document.querySelectorAll('.radio-card');
+    console.log('라디오 카드 개수:', radioCards.length);
+    
+    radioCards.forEach(card => {
+        const radio = card.querySelector('input[type="radio"]');
         
-        // 준비 상황 저장
-        formData.preparation = this.getAttribute('data-preparation');
+        if (radio) {
+            card.addEventListener('click', function() {
+                console.log('라디오 카드 클릭됨:', radio.name, '=', radio.value);
+                // 같은 그룹의 다른 카드 선택 해제
+                const name = radio.getAttribute('name');
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    r.closest('.radio-card').classList.remove('selected');
+                });
+                
+                // 현재 카드 선택
+                radio.checked = true;
+                card.classList.add('selected');
+                console.log('라디오 선택됨:', radio.checked);
+            });
+        }
     });
+    
+    // 전체 동의 체크박스
+    const agreeAllCheckbox = document.getElementById('agreeAll');
+    const termCheckboxes = document.querySelectorAll('.term-checkbox');
+    
+    if (agreeAllCheckbox) {
+        agreeAllCheckbox.addEventListener('change', function() {
+            termCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+        
+        termCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(termCheckboxes).every(cb => cb.checked);
+                agreeAllCheckbox.checked = allChecked;
+            });
+        });
+    }
+
+    // 전화번호 자동 포맷팅
+    const phoneInput = document.querySelector('input[name="phone"]');
+    
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            const cursorPosition = e.target.selectionStart;
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            
+            if (value.length > 11) {
+                value = value.slice(0, 11);
+            }
+            
+            let formattedValue = '';
+            if (value.length >= 7) {
+                formattedValue = value.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
+            } else if (value.length >= 4) {
+                formattedValue = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+            } else {
+                formattedValue = value;
+            }
+            
+            e.target.value = formattedValue;
+            
+            // 백스페이스로 인한 입력인 경우 커서 위치 조정
+            if (e.inputType === 'deleteContentBackward') {
+                // 하이픈이 삭제된 경우 커서를 하나 더 뒤로
+                const oldHyphens = (e.target.value.match(/-/g) || []).length;
+                const newHyphens = (formattedValue.match(/-/g) || []).length;
+                
+                if (newHyphens < oldHyphens) {
+                    e.target.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+                }
+            }
+        });
+        
+        phoneInput.addEventListener('keydown', function(e) {
+            // 백스페이스 키를 눌렀을 때
+            if (e.key === 'Backspace') {
+                const cursorPosition = e.target.selectionStart;
+                const value = e.target.value;
+                
+                // 커서가 하이픈 바로 뒤에 있을 때
+                if (cursorPosition > 0 && value[cursorPosition - 1] === '-') {
+                    e.preventDefault();
+                    // 하이픈과 그 앞의 숫자를 함께 삭제
+                    const newValue = value.slice(0, cursorPosition - 2) + value.slice(cursorPosition);
+                    // 숫자만 추출해서 다시 포맷팅
+                    let numbersOnly = newValue.replace(/[^0-9]/g, '');
+                    
+                    if (numbersOnly.length >= 7) {
+                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
+                    } else if (numbersOnly.length >= 4) {
+                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+                    }
+                    
+                    e.target.value = numbersOnly;
+                    // 커서 위치 조정
+                    const newCursorPos = cursorPosition - 2;
+                    e.target.setSelectionRange(newCursorPos, newCursorPos);
+                }
+            }
+        });
+    }
+    
+    console.log('=== 모든 이벤트 리스너 등록 완료 ===');
 });
 
 // 연락처 입력으로 이동
@@ -197,27 +321,6 @@ function closeModal() {
     }
 }
 
-// 전체 동의 체크박스
-document.addEventListener('DOMContentLoaded', () => {
-    const agreeAllCheckbox = document.getElementById('agreeAll');
-    const termCheckboxes = document.querySelectorAll('.term-checkbox');
-    
-    if (agreeAllCheckbox) {
-        agreeAllCheckbox.addEventListener('change', function() {
-            termCheckboxes.forEach(checkbox => {
-                checkbox.checked = this.checked;
-            });
-        });
-        
-        termCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const allChecked = Array.from(termCheckboxes).every(cb => cb.checked);
-                agreeAllCheckbox.checked = allChecked;
-            });
-        });
-    }
-});
-
 // 지역 선택 후 구 선택으로 이동
 function nextStepToDistrict() {
     const currentStepEl = document.querySelector('.form-step.active');
@@ -256,9 +359,11 @@ function updateDistrictOptions(location) {
         
         // 클릭 이벤트 추가
         button.addEventListener('click', function() {
+            console.log('동적 생성된 구 버튼 클릭됨:', district);
             document.querySelectorAll('.district-btn').forEach(b => b.classList.remove('selected'));
             this.classList.add('selected');
             formData.district = this.getAttribute('data-district');
+            console.log('구 저장됨:', formData.district);
         });
         
         locationGrid.appendChild(button);
@@ -417,37 +522,44 @@ function validateCurrentStep() {
         const phoneInput = currentStepEl.querySelector('input[name="phone"]');
         const privacyCheckbox = currentStepEl.querySelector('input[name="privacy"]');
         
-        if (!nameInput.value.trim()) {
+        if (nameInput && !nameInput.value.trim()) {
             alert('이름을 입력해주세요.');
             nameInput.focus();
             return false;
         }
         
-        if (!phoneInput.value.trim()) {
+        if (phoneInput && !phoneInput.value.trim()) {
             alert('연락처를 입력해주세요.');
             phoneInput.focus();
             return false;
         }
         
         // 전화번호 형식 검증 (간단한 버전)
-        const phonePattern = /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/;
-        if (!phonePattern.test(phoneInput.value.replace(/-/g, ''))) {
-            alert('올바른 연락처 형식을 입력해주세요.\n예: 010-1234-5678');
-            phoneInput.focus();
-            return false;
+        if (phoneInput) {
+            const phonePattern = /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/;
+            if (!phonePattern.test(phoneInput.value.replace(/-/g, ''))) {
+                alert('올바른 연락처 형식을 입력해주세요.\n예: 010-1234-5678');
+                phoneInput.focus();
+                return false;
+            }
         }
         
-        if (!privacyCheckbox.checked) {
+        if (privacyCheckbox && !privacyCheckbox.checked) {
             alert('개인정보 수집 및 이용에 동의해주세요.');
             return false;
         }
         
         // 폼 데이터 저장
-        formData.name = nameInput.value.trim();
-        formData.phone = phoneInput.value.trim();
-        formData.email = currentStepEl.querySelector('input[name="email"]').value.trim();
-        formData.contactTime = currentStepEl.querySelector('select[name="contact-time"]').value;
-        formData.message = currentStepEl.querySelector('textarea[name="message"]').value.trim();
+        if (nameInput) formData.name = nameInput.value.trim();
+        if (phoneInput) formData.phone = phoneInput.value.trim();
+        
+        const emailInput = currentStepEl.querySelector('input[name="email"]');
+        const contactTimeSelect = currentStepEl.querySelector('select[name="contact-time"]');
+        const messageTextarea = currentStepEl.querySelector('textarea[name="message"]');
+        
+        if (emailInput) formData.email = emailInput.value.trim();
+        if (contactTimeSelect) formData.contactTime = contactTimeSelect.value;
+        if (messageTextarea) formData.message = messageTextarea.value.trim();
     }
     
     return true;
@@ -472,108 +584,9 @@ function submitForm() {
         console.error('저장 실패:', e);
     }
     
-    // 서버 전송 시뮬레이션 (실제로는 fetch/axios 사용)
-    // fetch('/api/estimate', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log('성공:', data);
-    //     nextStep();
-    // })
-    // .catch(error => {
-    //     console.error('오류:', error);
-    //     alert('견적 요청 중 오류가 발생했습니다. 다시 시도해주세요.');
-    // });
-    
     // 데모: 즉시 다음 단계로
     nextStep();
 }
-
-// 라디오 카드 시각적 피드백
-document.querySelectorAll('.radio-card').forEach(card => {
-    const radio = card.querySelector('input[type="radio"]');
-    
-    card.addEventListener('click', function() {
-        // 같은 그룹의 다른 카드 선택 해제
-        const name = radio.getAttribute('name');
-        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-            r.closest('.radio-card').classList.remove('selected');
-        });
-        
-        // 현재 카드 선택
-        radio.checked = true;
-        card.classList.add('selected');
-    });
-});
-
-// 전화번호 자동 포맷팅
-document.addEventListener('DOMContentLoaded', () => {
-    const phoneInput = document.querySelector('input[name="phone"]');
-    
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            const cursorPosition = e.target.selectionStart;
-            let value = e.target.value.replace(/[^0-9]/g, '');
-            
-            if (value.length > 11) {
-                value = value.slice(0, 11);
-            }
-            
-            let formattedValue = '';
-            if (value.length >= 7) {
-                formattedValue = value.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
-            } else if (value.length >= 4) {
-                formattedValue = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
-            } else {
-                formattedValue = value;
-            }
-            
-            e.target.value = formattedValue;
-            
-            // 백스페이스로 인한 입력인 경우 커서 위치 조정
-            if (e.inputType === 'deleteContentBackward') {
-                // 하이픈이 삭제된 경우 커서를 하나 더 뒤로
-                const oldHyphens = (e.target.value.match(/-/g) || []).length;
-                const newHyphens = (formattedValue.match(/-/g) || []).length;
-                
-                if (newHyphens < oldHyphens) {
-                    e.target.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
-                }
-            }
-        });
-        
-        phoneInput.addEventListener('keydown', function(e) {
-            // 백스페이스 키를 눌렀을 때
-            if (e.key === 'Backspace') {
-                const cursorPosition = e.target.selectionStart;
-                const value = e.target.value;
-                
-                // 커서가 하이픈 바로 뒤에 있을 때
-                if (cursorPosition > 0 && value[cursorPosition - 1] === '-') {
-                    e.preventDefault();
-                    // 하이픈과 그 앞의 숫자를 함께 삭제
-                    const newValue = value.slice(0, cursorPosition - 2) + value.slice(cursorPosition);
-                    // 숫자만 추출해서 다시 포맷팅
-                    let numbersOnly = newValue.replace(/[^0-9]/g, '');
-                    
-                    if (numbersOnly.length >= 7) {
-                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
-                    } else if (numbersOnly.length >= 4) {
-                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{0,4})/, '$1-$2');
-                    }
-                    
-                    e.target.value = numbersOnly;
-                    // 커서 위치 조정
-                    const newCursorPos = cursorPosition - 2;
-                    e.target.setSelectionRange(newCursorPos, newCursorPos);
-                }
-            }
-        });
-    }
-});
 
 // 페이지 이탈 경고 (데이터 입력 중일 때)
 window.addEventListener('beforeunload', function(e) {

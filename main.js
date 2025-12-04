@@ -3,7 +3,7 @@
 // ===========================
 
 // 지역별 구/군 데이터
-const districtData = {
+const regionDistrictData = {
     '서울': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
     '경기': ['수원시', '성남시', '고양시', '용인시', '부천시', '안산시', '안양시', '남양주시', '화성시', '평택시', '의정부시', '시흥시', '파주시', '김포시', '광명시', '광주시', '군포시', '하남시', '오산시', '양주시', '이천시', '구리시', '안성시', '포천시', '의왕시', '양평군', '여주시', '동두천시', '과천시', '가평군', '연천군'],
     '부산': ['중구', '서구', '동구', '영도구', '부산진구', '동래구', '남구', '북구', '해운대구', '사하구', '금정구', '강서구', '연제구', '수영구', '사상구', '기장군'],
@@ -452,9 +452,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // 세부지역 초기화
             districtSelect.innerHTML = '<option value="">--</option>';
             
-            if (selectedRegion && districtData[selectedRegion]) {
+            if (selectedRegion && regionDistrictData[selectedRegion]) {
                 // 선택된 지역의 세부지역 옵션 추가
-                districtData[selectedRegion].forEach(district => {
+                regionDistrictData[selectedRegion].forEach(district => {
                     const option = document.createElement('option');
                     option.value = district;
                     option.textContent = district;
