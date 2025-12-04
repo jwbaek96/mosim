@@ -140,13 +140,59 @@ body {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* 모바일 하단 네비게이션 */
+.mobile-bottom-nav {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border-top: 1px solid var(--gray-200);
+    padding: 12px 20px;
+    /* gap: 16px; */
+    overflow-x: auto;
+    white-space: nowrap;
+    transform: translateY(100%);
+    scrollbar-width: none;
+}
+
+.mobile-bottom-nav .nav-link {
+    color: var(--gray-800);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.mobile-bottom-nav .nav-link:hover,
+.mobile-bottom-nav .nav-link.active {
+    color: var(--mosim-primary);
+    background-color: var(--mosim-light);
+}
+
+@media (max-width: 767px) {
+    .main-header {
+        position: relative;
+    }
+    
+    .mobile-bottom-nav {
+        display: flex;
+        position: relative;
+        transform: none;
+    }
+    
+    .main-content {
+        margin-top: 0 !important;
+    }
+}
+
 @media (min-width: 768px) {
     .desktop-nav {
         display: flex;
-    }
-    
-    .mobile-menu-btn {
-        display: none;
     }
 }
 

@@ -9,7 +9,7 @@
 }
 
 .estimate-container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -146,12 +146,12 @@
     background-color: var(--white);
     border: 2px solid var(--gray-300);
     border-radius: 12px;
-    padding: 24px 28px;
+    padding: 17px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
     min-height: var(--touch-target);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--gray-800);
     line-height: 1.6;
@@ -640,13 +640,13 @@ textarea.form-input {
 .button-group {
     display: flex;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 40px;
 }
 
 .button-group .btn {
     flex: 1;
-    max-width: 200px;
+    /* max-width: 200px; */
 }
 
 /* 완료 메시지 */
@@ -752,9 +752,7 @@ textarea.form-input {
         grid-template-columns: 1fr;
     }
     
-    .button-group {
-        flex-direction: column;
-    }
+    /* .button-group {flex-direction: column;} */
     
     .button-group .btn {
         max-width: 100%;

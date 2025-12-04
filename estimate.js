@@ -515,19 +515,62 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (phoneInput) {
         phoneInput.addEventListener('input', function(e) {
+            const cursorPosition = e.target.selectionStart;
             let value = e.target.value.replace(/[^0-9]/g, '');
             
             if (value.length > 11) {
                 value = value.slice(0, 11);
             }
             
+            let formattedValue = '';
             if (value.length >= 7) {
-                value = value.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
+                formattedValue = value.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
             } else if (value.length >= 4) {
-                value = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+                formattedValue = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+            } else {
+                formattedValue = value;
             }
             
-            e.target.value = value;
+            e.target.value = formattedValue;
+            
+            // 백스페이스로 인한 입력인 경우 커서 위치 조정
+            if (e.inputType === 'deleteContentBackward') {
+                // 하이픈이 삭제된 경우 커서를 하나 더 뒤로
+                const oldHyphens = (e.target.value.match(/-/g) || []).length;
+                const newHyphens = (formattedValue.match(/-/g) || []).length;
+                
+                if (newHyphens < oldHyphens) {
+                    e.target.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+                }
+            }
+        });
+        
+        phoneInput.addEventListener('keydown', function(e) {
+            // 백스페이스 키를 눌렀을 때
+            if (e.key === 'Backspace') {
+                const cursorPosition = e.target.selectionStart;
+                const value = e.target.value;
+                
+                // 커서가 하이픈 바로 뒤에 있을 때
+                if (cursorPosition > 0 && value[cursorPosition - 1] === '-') {
+                    e.preventDefault();
+                    // 하이픈과 그 앞의 숫자를 함께 삭제
+                    const newValue = value.slice(0, cursorPosition - 2) + value.slice(cursorPosition);
+                    // 숫자만 추출해서 다시 포맷팅
+                    let numbersOnly = newValue.replace(/[^0-9]/g, '');
+                    
+                    if (numbersOnly.length >= 7) {
+                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{4})(\d{0,4})/, '$1-$2-$3');
+                    } else if (numbersOnly.length >= 4) {
+                        numbersOnly = numbersOnly.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+                    }
+                    
+                    e.target.value = numbersOnly;
+                    // 커서 위치 조정
+                    const newCursorPos = cursorPosition - 2;
+                    e.target.setSelectionRange(newCursorPos, newCursorPos);
+                }
+            }
         });
     }
 });
