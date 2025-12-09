@@ -1,0 +1,545 @@
+/* ===========================
+   상품 안내 페이지 스타일
+   =========================== */
+
+.products-main {
+    background-color: var(--gray-50);
+    min-height: 100vh;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 상단 네비게이션 */
+.products-nav {
+    display: flex;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.products-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.products-nav-link {
+    padding: 12px 16px;
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.products-nav-link:hover {
+    color: var(--gray-900);
+}
+
+.products-nav-link.active {
+    color: var(--gray-900);
+    border-bottom-color: var(--gray-900);
+    font-weight: 600;
+}
+
+/* 슬라이드 배너 */
+.products-banner {
+    position: relative;
+    background: linear-gradient(135deg, #FFE5CC 0%, #FFD8A8 100%);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 18px;
+    margin-top: 10px;
+}
+
+.banner-slide {
+    display: none;
+}
+
+.banner-slide.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.banner-badge {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--white);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.banner-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+}
+
+.banner-link {
+    position: sticky;
+    display: inline-block;
+    background-color: var(--gray-900);
+    color: var(--white);
+    padding: 12px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.banner-link:hover {
+    background-color: var(--gray-800);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.banner-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    width: 24px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 스티키 탭 네비게이션 */
+.sticky-tabs {
+    position: sticky;
+    top: 70px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 767px) {
+    .sticky-tabs {
+        top: 110px; /* 모바일: 헤더(70px) + 모바일 하단 네비(50px) */
+    }
+}
+
+.sticky-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.sticky-tab {
+    padding: 12px 16px;
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.sticky-tab:hover {
+    color: var(--gray-900);
+}
+
+.sticky-tab.active {
+    color: var(--mosim-primary);
+    border-bottom-color: var(--mosim-primary);
+    font-weight: 600;
+}
+
+/* 콘텐츠 영역 */
+.products-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products-content .content-section {
+    border-radius: 0;
+    box-shadow: none;
+}
+.content-section {
+    padding: 40px 20px;
+    background-color: var(--white);
+    /* margin-bottom: 8px; */
+}
+
+/* 섹션 헤더 */
+.section-header {
+    margin-bottom: 40px;
+}
+
+.section-header.centered {
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* 상품 카드 */
+.product-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.product-card {
+    background-color: var(--gray-50);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.product-card:hover {
+    border-color: var(--mosim-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-header {
+    margin-bottom: 16px;
+}
+
+.product-tag {
+    display: inline-block;
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.product-tag.featured {
+    background-color: var(--mosim-primary);
+    color: var(--white);
+}
+
+.product-tag.new {
+    background-color: var(--emergency);
+    color: var(--white);
+}
+
+.product-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--gray-900);
+}
+
+.product-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.product-desc .highlight {
+    color: var(--mosim-primary);
+    font-weight: 600;
+}
+
+.product-btn {
+    display: block;
+    text-align: center;
+    background-color: var(--white);
+    color: var(--gray-900);
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid var(--gray-300);
+    transition: all 0.2s ease;
+}
+
+.product-btn:hover {
+    background-color: var(--gray-900);
+    color: var(--white);
+    border-color: var(--gray-900);
+}
+
+/* 혜택 목록 */
+.benefit-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.benefit-item {
+    padding: 24px 20px;
+    background-color: var(--gray-50);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.benefit-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background-color: var(--mosim-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mosim-primary);
+}
+
+.benefit-item h4 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+}
+
+.benefit-item p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.benefit-item a {
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.benefit-item a:hover {
+    text-decoration: underline;
+}
+
+/* 비교 카드 */
+.comparison-cards {
+    display: grid;
+    gap: 12px;
+}
+
+.comparison-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.comparison-card:hover {
+    border-color: var(--gray-400);
+    box-shadow: var(--shadow-sm);
+}
+
+.comparison-card.highlight {
+    background: linear-gradient(135deg, var(--mosim-light) 0%, #FFF5E0 100%);
+    border-color: var(--mosim-primary);
+}
+
+.card-label {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: var(--gray-700);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.card-label.featured {
+    background-color: var(--mosim-primary);
+}
+
+.comparison-card {
+    position: relative;
+    padding-top: 28px;
+}
+
+.card-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--gray-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gray-700);
+    flex-shrink: 0;
+}
+
+.user-avatar.premium {
+    background: linear-gradient(135deg, var(--mosim-primary) 0%, var(--mosim-accent) 100%);
+    color: var(--white);
+}
+
+.user-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.user-info span {
+    display: block;
+    font-size: 13px;
+    color: var(--gray-600);
+}
+
+.card-arrow {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: var(--gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.card-arrow:hover {
+    background-color: var(--gray-900);
+    color: var(--white);
+}
+
+/* 정보 섹션 */
+.info-section {
+    padding: 60px 20px;
+    background-color: var(--gray-50);
+}
+
+.info-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.info-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background-color: var(--mosim-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mosim-primary);
+}
+
+.info-box h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.info-box p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.info-link {
+    display: inline-block;
+    color: var(--mosim-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 2px solid var(--mosim-primary);
+    transition: all 0.2s ease;
+}
+
+.info-link:hover {
+    background-color: var(--mosim-primary);
+    color: var(--white);
+}
+
+/* 반응형 - 데스크톱 */

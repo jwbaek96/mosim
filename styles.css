@@ -35,6 +35,14 @@ body {
     color: var(--gray-900);
     background-color: var(--white);
     overflow-x: hidden;
+    padding-top: 70px;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 150px; /* 헤더(70px) + 모바일 하단 네비(50px 예상) */
+        padding-bottom: 60px; /* 하단 네비게이션 공간 */
+    }
 }
 
 .container {
@@ -166,7 +174,7 @@ body {
     right: 0;
     background-color: var(--white);
     border-top: 1px solid var(--gray-200);
-    padding: 12px 20px;
+    padding: 2px 20px;
     /* gap: 16px; */
     overflow-x: auto;
     white-space: nowrap;
@@ -192,9 +200,6 @@ body {
 }
 
 @media (max-width: 767px) {
-    .main-header {
-        position: relative;
-    }
     
     .mobile-bottom-nav {
         display: flex;
@@ -550,7 +555,7 @@ body {
    메인 콘텐츠
    =========================== */
 .main-content {
-    margin-top: 70px;
+    /* body에 padding-top이 있으므로 margin 불필요 */
 }
 
 /* 홈 페이지 모바일 뷰 레이아웃 */
