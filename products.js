@@ -48,10 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 배너 슬라이드 자동 전환 (선택사항)
+    // 배너 슬라이드 드래그
     const bannerSlides = document.querySelectorAll('.banner-slide');
     const indicators = document.querySelectorAll('.indicator');
+    const bannerSection = document.querySelector('.products-banner');
     let currentSlide = 0;
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
     
     function showSlide(index) {
         bannerSlides.forEach(slide => slide.classList.remove('active'));
@@ -66,8 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentSlide);
     }
     
-    // 5초마다 자동 전환
-    setInterval(nextSlide, 5000);
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + bannerSlides.length) % bannerSlides.length;
+        showSlide(currentSlide);
+    }
     
     // 인디케이터 클릭 이벤트
     indicators.forEach((indicator, index) => {
@@ -76,6 +84,61 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(currentSlide);
         });
     });
+    
+    // 터치 및 마우스 드래그 이벤트
+    function touchStart(index) {
+        return function(event) {
+            isDragging = true;
+            startPos = getPositionX(event);
+            animationID = requestAnimationFrame(animation);
+            bannerSection.style.cursor = 'grabbing';
+        }
+    }
+    
+    function touchMove(event) {
+        if (isDragging) {
+            const currentPosition = getPositionX(event);
+            currentTranslate = prevTranslate + currentPosition - startPos;
+        }
+    }
+    
+    function touchEnd() {
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        bannerSection.style.cursor = 'grab';
+        
+        const movedBy = currentTranslate - prevTranslate;
+        
+        // 50px 이상 드래그하면 슬라이드 전환
+        if (movedBy < -50 && currentSlide < bannerSlides.length - 1) {
+            nextSlide();
+        }
+        
+        if (movedBy > 50 && currentSlide > 0) {
+            prevSlide();
+        }
+        
+        currentTranslate = 0;
+        prevTranslate = 0;
+    }
+    
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+    
+    function animation() {
+        if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    // 이벤트 리스너 등록
+    bannerSection.addEventListener('mousedown', touchStart(currentSlide));
+    bannerSection.addEventListener('touchstart', touchStart(currentSlide));
+    bannerSection.addEventListener('mousemove', touchMove);
+    bannerSection.addEventListener('touchmove', touchMove);
+    bannerSection.addEventListener('mouseup', touchEnd);
+    bannerSection.addEventListener('mouseleave', touchEnd);
+    bannerSection.addEventListener('touchend', touchEnd);
+    bannerSection.style.cursor = 'grab';
     
     // 상단 네비게이션 활성화
     const productsNavLinks = document.querySelectorAll('.products-nav-link');
